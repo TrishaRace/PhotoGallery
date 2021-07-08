@@ -1,2 +1,4 @@
 rootProject.name = "PhotoGallery"
 include ':app'
+include ':core'
+include ':generalgallery'
