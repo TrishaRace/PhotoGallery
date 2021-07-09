@@ -1,4 +1,4 @@
-package com.example.extensions
+package com.trisharace.core.extensions
 
 import kotlinx.coroutines.Job
 

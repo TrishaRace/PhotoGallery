@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.trisharace.generalgallery.domain.usecases.GetPhotoDetailUseCase
 import com.trisharace.generalgallery.models.view.PhotoView
-import com.example.exception.Failure
-import com.example.extensions.cancelIfActive
-import com.example.platform.BaseViewModel
+import com.trisharace.core.exception.Failure
+import com.trisharace.core.extensions.cancelIfActive
+import com.trisharace.core.platform.BaseViewModel
 import com.trisharace.core.utilities.Error
 import com.trisharace.core.utilities.Success
 import kotlinx.coroutines.Job

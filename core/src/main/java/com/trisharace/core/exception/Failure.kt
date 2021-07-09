@@ -1,4 +1,4 @@
-package com.example.exception
+package com.trisharace.core.exception
 
 sealed class Failure {
     object NetworkConnection : Failure()

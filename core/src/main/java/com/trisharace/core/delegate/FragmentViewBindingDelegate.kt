@@ -1,4 +1,4 @@
-package com.example.delegate
+package com.trisharace.core.delegate
 
 import android.view.View
 import androidx.fragment.app.Fragment

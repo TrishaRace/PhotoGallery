@@ -1,8 +1,8 @@
-package com.example.platform
+package com.trisharace.core.platform
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.exception.Failure
+import com.trisharace.core.exception.Failure
 
 abstract class BaseViewModel : ViewModel() {
 

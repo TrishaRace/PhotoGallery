@@ -1,6 +1,6 @@
 package com.trisharace.core.utilities
 
-import com.example.exception.Failure
+import com.trisharace.core.exception.Failure
 
 sealed class State<out T : Any>
 

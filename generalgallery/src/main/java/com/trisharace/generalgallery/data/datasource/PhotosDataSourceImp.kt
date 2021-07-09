@@ -3,7 +3,7 @@ package com.trisharace.generalgallery.data.datasource
 import android.util.Log
 import com.trisharace.generalgallery.data.service.PhotoService
 import com.trisharace.generalgallery.models.view.PhotoView
-import com.example.exception.Failure
+import com.trisharace.core.exception.Failure
 import com.trisharace.core.platform.NetworkHandler
 import com.trisharace.core.utilities.State
 import com.trisharace.core.utilities.Success

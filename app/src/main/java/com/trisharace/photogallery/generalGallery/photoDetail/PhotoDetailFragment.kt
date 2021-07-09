@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.trisharace.generalgallery.models.view.PhotoView
-import com.example.extensions.viewBinding
-import com.example.platform.BaseFragment
-import com.trisharace.generalgallery.databinding.FragmentPhotoDetailBinding
+import com.trisharace.core.extensions.viewBinding
+import com.trisharace.core.platform.BaseFragment
 import com.trisharace.photogallery.R
+import com.trisharace.photogallery.databinding.FragmentPhotoDetailBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
@@ -33,12 +33,13 @@ class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
         with(binding) {
             with(image) {
                 com.bumptech.glide.Glide.with(context.applicationContext)
-                    .load(photoDetail.photoUrls?.thumb)
+                    .load(photoDetail.photoUrls?.regular)
                     .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
                     .into(this)
             }
-            name.text = photoDetail.user?.username
-            info1.text = photoDetail.description
+            username.text = photoDetail.user?.username
+            description.text = photoDetail.description
+            likes.text = photoDetail.likes.toString()
         }
     }
 }
