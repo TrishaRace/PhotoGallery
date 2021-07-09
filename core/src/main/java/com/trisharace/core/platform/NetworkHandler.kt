@@ -1,4 +1,4 @@
-package com.example.platform
+package com.trisharace.core.platform
 
 import android.content.Context
 import android.net.ConnectivityManager

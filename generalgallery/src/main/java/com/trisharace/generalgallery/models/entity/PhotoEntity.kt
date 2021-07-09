@@ -1,16 +1,22 @@
 package com.trisharace.generalgallery.models.entity
 
+import com.google.gson.annotations.SerializedName
 import com.trisharace.generalgallery.models.data.Photo
+import com.trisharace.generalgallery.models.data.User
 
 data class PhotoEntity(
-    val id: Int,
-    val name: String?,
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("description")
     val description: String?,
-    val modified: String?,
-    val resourceURI: String?,
-    val thumbnail: PhotoThumbnailEntity?
+    @SerializedName("likes")
+    val likes: Int,
+    @SerializedName("urls")
+    val photoUrls: PhotoUrlsEntity?,
+    @SerializedName("user")
+    val user: User?
 ) {
 
     fun toPhoto() =
-        Photo(id, name, description, modified, resourceURI, thumbnail?.toPhotoThumbnail())
+        Photo(id, description,likes,photoUrls?.toPhotoUrls(),user)
 }

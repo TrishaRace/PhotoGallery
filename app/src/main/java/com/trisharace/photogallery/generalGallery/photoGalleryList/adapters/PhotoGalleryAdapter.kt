@@ -36,10 +36,9 @@ class PhotoGalleryAdapter : RecyclerView.Adapter<PhotoGalleryAdapter.CharacterLi
         private val binding = ItemViewPhotoBinding.bind(itemView)
 
         fun bind(item: PhotoView, characterListener: (PhotoView) -> Unit) {
-            binding.name.text = item.name
             with(binding.image) {
                 Glide.with(context.applicationContext)
-                    .load(item.image)
+                    .load(item.photoUrls?.thumb)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(this)
             }

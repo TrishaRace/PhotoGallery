@@ -25,10 +25,10 @@ class PhotoDetailViewModel(
     private var _photoDetail = MutableLiveData<PhotoView>()
     val photoDetail get() = _photoDetail
 
-    fun getPhotoDetail(photoId: Int) {
+    fun getPhotoDetail(photoId: String) {
         getForecastsJob.cancelIfActive()
         getForecastsJob = viewModelScope.launch {
-            getPhotoDetailUseCase(GetPhotoDetailUseCase.Input(photoId.toString()))
+            getPhotoDetailUseCase(GetPhotoDetailUseCase.Input(photoId))
                 .onStart { handleShowSpinner(true) }
                 .onCompletion { handleShowSpinner(false) }
                 .catch { handleFailure(Failure.Throwable(it)) }

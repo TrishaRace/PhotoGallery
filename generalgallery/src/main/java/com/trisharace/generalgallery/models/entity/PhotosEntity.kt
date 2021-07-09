@@ -1,19 +1,11 @@
 package com.trisharace.generalgallery.models.entity
 
-import com.trisharace.generalgallery.models.data.Photos
+import com.trisharace.generalgallery.models.data.Photo
 
 data class PhotosEntity(
-    val id: Int?,
-    var offset: Int?,
-    val limit: Int?,
-    val total: Int?,
-    val count: Int?,
-    var results: MutableList<PhotoEntity>?
+    val photo: List<PhotoEntity>
 ) {
 
-    fun toPhotos() =
-        Photos(
-            offset,
-            limit, total, count, results?.map { it.toPhoto() }?.toMutableList()
-        )
+    fun toPhotos() : List<Photo> = photo.map { it.toPhoto() }
+
 }

@@ -3,7 +3,6 @@ package com.trisharace.photogallery.generalGallery.photoGalleryList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.trisharace.generalgallery.domain.usecases.GetPhotosUseCase
-import com.trisharace.generalgallery.models.view.PhotosView
 import com.example.exception.Failure
 import com.example.extensions.cancelIfActive
 import com.example.platform.BaseViewModel
@@ -35,8 +34,8 @@ class PhotoGalleryViewModel(
                 .catch { handleFailure(Failure.Throwable(it)) }
                 .collect { result ->
                     when (result) {
-                        is Success<PhotosView> -> {
-                            _photos.value = result.data.results
+                        is Success<List<PhotoView>> -> {
+                            _photos.value = result.data
                         }
                         is Error -> {
                             handleFailure(result.failure)

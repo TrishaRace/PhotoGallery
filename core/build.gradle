@@ -39,14 +39,14 @@ android {
         Production {
             dimension "enviroment"
             buildConfigField "String", "ENVIRONMENT", "\"PRO\""
-            buildConfigField "String", "BASE_URL", "\"https://gateway.marvel.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://api.unsplash.com/\""
             buildConfigField "String", "PRIVATE_KEY", apikeyProperties["PRIVATE_KEY"]
             buildConfigField "String", "PUBLIC_KEY", apikeyProperties["PUBLIC_KEY"]
         }
         Preproduction {
             dimension "enviroment"
             buildConfigField "String", "ENVIRONMENT", "\"PRE\""
-            buildConfigField "String", "BASE_URL", "\"https://gateway.marvel.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://api.unsplash.com/\""
             buildConfigField "String", "PRIVATE_KEY", apikeyProperties["PRIVATE_KEY"]
             buildConfigField "String", "PUBLIC_KEY", apikeyProperties["PUBLIC_KEY"]
         }
@@ -72,6 +72,8 @@ dependencies {
     api 'androidx.databinding:viewbinding:4.2.0'
     api 'androidx.biometric:biometric:1.1.0'
     // Retrofit
+    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.google.code.gson:gson:2.8.6'
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:converter-gson:2.9.0'
     api 'com.squareup.okhttp3:logging-interceptor:4.9.0'

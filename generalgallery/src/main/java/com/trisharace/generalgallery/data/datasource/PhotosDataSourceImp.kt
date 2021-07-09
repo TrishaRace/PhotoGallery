@@ -1,10 +1,10 @@
 package com.trisharace.generalgallery.data.datasource
 
-import com.trisharace.generalgallery.models.view.PhotosView
+import android.util.Log
 import com.trisharace.generalgallery.data.service.PhotoService
 import com.trisharace.generalgallery.models.view.PhotoView
 import com.example.exception.Failure
-import com.example.platform.NetworkHandler
+import com.trisharace.core.platform.NetworkHandler
 import com.trisharace.core.utilities.State
 import com.trisharace.core.utilities.Success
 import com.trisharace.core.utilities.Error
@@ -20,6 +20,7 @@ class PhotosDataSourceImp(
     ) = flow {
         emit(getPhotosFromService())
     }.catch {
+        Log.i("resultado",it.message.toString())
         emit(Error(Failure.Throwable(it)))
     }
 
@@ -29,17 +30,21 @@ class PhotosDataSourceImp(
         emit(Error(Failure.Throwable(it)))
     }
 
-    private suspend fun getPhotosFromService(): State<PhotosView> {
+    private suspend fun getPhotosFromService(): State<List<PhotoView>> {
         return if (networkHandler.isConnected == true) {
-            service.getPhotos(10, 0).run {
+            service.getPhotos().run {
+                Log.i("resultado",this.isSuccessful.toString())
                 if (this.isSuccessful && this.body() != null) {
-                    val data = this.body()!!.data
-                    Success(data.toPhotos().toPhotosView())
+                    val data = this.body()!!
+                    Log.i("resultado",data.toString())
+                    return Success(data.map{it.toPhoto()}.map {
+                        it.toPhotoView() })
                 } else {
                     Error(Failure.ServerError(code()))
                 }
             }
         } else {
+            Log.i("resultado","error ")
             Error(Failure.NetworkConnection)
         }
     }
@@ -48,11 +53,7 @@ class PhotosDataSourceImp(
         return if (networkHandler.isConnected == true) {
             service.getPhotoDetail(id).run {
                 if (this.isSuccessful && this.body() != null) {
-                    this.body()!!.data.results?.let {
-                        Success(it.first().toPhoto().toPhotoView())
-                    }?: kotlin.run {
-                        Error(Failure.CustomError(0, "Couldn't get the character"))
-                    }
+                     Success(this.body()!!.toPhoto().toPhotoView())
                 } else {
                     Error(Failure.ServerError(code()))
                 }

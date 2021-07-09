@@ -33,11 +33,11 @@ class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
         with(binding) {
             with(image) {
                 com.bumptech.glide.Glide.with(context.applicationContext)
-                    .load(photoDetail.image)
+                    .load(photoDetail.photoUrls?.thumb)
                     .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
                     .into(this)
             }
-            name.text = photoDetail.name
+            name.text = photoDetail.user?.username
             info1.text = photoDetail.description
         }
     }
