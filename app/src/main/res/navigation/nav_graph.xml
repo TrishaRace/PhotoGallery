@@ -22,6 +22,7 @@
         tools:layout="@layout/fragment_photo_gallery" >
         <action
             android:id="@+id/action_photoGalleryFragment_to_photoDetailFragment"
-            app:destination="@id/photoDetailFragment" />
+            app:destination="@id/photoDetailFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
 </navigation>

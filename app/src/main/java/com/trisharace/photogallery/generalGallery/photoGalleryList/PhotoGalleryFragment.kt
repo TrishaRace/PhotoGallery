@@ -24,7 +24,11 @@ class PhotoGalleryFragment : BaseFragment(R.layout.fragment_photo_gallery) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().toolbar.title = "Bienvenido a App Gallery"
+        requireActivity().toolbar.apply {
+            title = "Bienvenido a App Gallery"
+            setBackgroundColor(resources.getColor(R.color.black))
+            setTitleTextColor(resources.getColor(R.color.white))
+        }
         with(photoViewModel) {
             photos.observe(viewLifecycleOwner, ::handlePhotos)
             showSpinner.observe(viewLifecycleOwner, ::showLoading)
@@ -38,8 +42,9 @@ class PhotoGalleryFragment : BaseFragment(R.layout.fragment_photo_gallery) {
 
     private fun initView() {
         binding.photoList.apply {
-            layoutManager = GridLayoutManager(requireContext(),2, RecyclerView.VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 2, RecyclerView.VERTICAL, false)
             adapter = photosAdapter
+
         }
     }
 
@@ -54,15 +59,18 @@ class PhotoGalleryFragment : BaseFragment(R.layout.fragment_photo_gallery) {
     }
 
     private fun getData() {
-        photoViewModel.getPhotos()
+        if(photosAdapter.collection.toMutableList().isEmpty()) photoViewModel.getPhotos()
     }
 
     private fun handlePhotos(photosView: List<PhotoView>) {
         photosView.let {
+            photosAdapter.clearCollection()
             val list = photosAdapter.collection.toMutableList()
             list.addAll(it.toMutableList())
             photosAdapter.collection = list
         }
     }
+
+
 
 }

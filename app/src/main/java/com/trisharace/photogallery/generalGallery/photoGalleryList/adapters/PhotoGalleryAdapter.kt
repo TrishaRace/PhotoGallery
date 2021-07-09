@@ -17,6 +17,10 @@ class PhotoGalleryAdapter : RecyclerView.Adapter<PhotoGalleryAdapter.PhotoListVi
     internal var collection: List<PhotoView> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
+
+    internal fun clearCollection(){
+        collection = emptyList()
+    }
     internal var photoListener: (PhotoView) -> Unit = { }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
